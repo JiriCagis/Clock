@@ -1,3 +1,5 @@
+package clock;
+
 
 import java.awt.BasicStroke;
 import java.awt.Color;
