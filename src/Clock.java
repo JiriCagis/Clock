@@ -11,13 +11,13 @@ import javax.swing.JPanel;
 public class Clock extends JPanel implements Runnable {
 
     //constants
-    private final Color BACKGROUND = Color.white;
+    private final Color BACKGROUND = Color.LIGHT_GRAY;
     private final Color CONTOUR = Color.BLACK;
-    private final Color HOUR_HAND = Color.BLUE;
-    private final Color MINUTES_HAND = Color.blue;
+    private final Color HOUR_HAND = Color.BLACK;
+    private final Color MINUTES_HAND = Color.darkGray;
     private final Color SECOND_HAND = Color.red;
     
-
+    //variables for drawing
     private Point clockCenter;
     private int halfAxisX;
     private int halfAxisY;
@@ -26,8 +26,6 @@ public class Clock extends JPanel implements Runnable {
         setBackground(BACKGROUND);
         setSize(300, 300); //25 mean top panel with control button
         new Thread(this).start();
-        //clockCenter = new Point(300 / 2, 300 / 2);
-        //radius = 300 / 2;
     }
 
     @Override
@@ -53,9 +51,20 @@ public class Clock extends JPanel implements Runnable {
 
         Date date = new Date();
         drawClock(g2, CONTOUR);
-        drawHand(g2, HOUR_HAND, 12, date.getHours() * 5);
+        drawHand(g2, HOUR_HAND, 12, (date.getHours()*5)+calculatePartOfHour(date));
         drawHand(g2, MINUTES_HAND, 4, date.getMinutes());
         drawHand(g2, SECOND_HAND, 1, date.getSeconds());
+    }
+    
+    /*
+        5 ... 60
+        x ... minute
+        --------------------
+        x:5=MINUTE:100
+        x=(5*minute)/100
+    */
+    private int calculatePartOfHour(Date date){
+       return (int) ((double)(5*date.getMinutes())/60);
     }
 
     private void drawClock(Graphics2D g2, Color color) {
@@ -64,7 +73,7 @@ public class Clock extends JPanel implements Runnable {
         g2.drawOval(0, 0, getWidth(), getHeight());
         for (int i = 6; i <= 360; i = i + 6) {
             g2.setStroke((i % 90 == 0) ? new BasicStroke(3) : new BasicStroke(1));
-            int length = (i % 90 == 0) ? 15 : 10;
+            int length = (i % 90 == 0) ? 20 : ((i % 30 == 0) ? 30 : 10);
             g2.drawLine(
                     (int) (clockCenter.x + ((halfAxisX - length) * Math.cos(i / 57.2))),
                     (int) (clockCenter.y + ((halfAxisY - length) * Math.sin(i / 57.2))),

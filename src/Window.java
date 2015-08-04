@@ -1,23 +1,26 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
+import javax.swing.JFrame;
 
-import javax.swing.JDialog;
 
-
-public class Window extends JDialog{
+class Window extends JFrame{
 
 	public Window() {
 		setTitle("Clock");
 		setSize(400,450);
-		setResizable(false);
+		setResizable(true);
 		Date date = new Date(); //current date;
-		Clock clock = new Clock(date,400,400);
+		Clock clock = new Clock();
 		getContentPane().add(clock);
-		
-		
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        dispose();
+                        System.exit(0);
+                    }
+                               
+                });		
 	}
-	public static void main(String args[]){
-		new Window().setVisible(true);
-                
-		
-	}
-}
+	
+};
