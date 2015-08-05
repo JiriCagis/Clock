@@ -1,5 +1,4 @@
-package clock;
-
+package view.component;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -10,6 +9,10 @@ import java.util.Date;
 
 import javax.swing.JPanel;
 
+/**
+ * This class is panel show analog clock.
+ * @author adminuser
+ */
 public class Clock extends JPanel implements Runnable {
 
     //constants
@@ -26,7 +29,6 @@ public class Clock extends JPanel implements Runnable {
 
     public Clock() {
         setBackground(BACKGROUND);
-        setSize(300, 300); //25 mean top panel with control button
         new Thread(this).start();
     }
 
@@ -45,30 +47,34 @@ public class Clock extends JPanel implements Runnable {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        
+        //draw background
         g2.setColor(BACKGROUND);
-        g2.fillRect(0, 0, getWidth(), getHeight());
+        g2.fillRect(0, 0, getWidth(), getHeight()); 
+        
+        //prepare values
         clockCenter = new Point(getWidth() / 2, getHeight() / 2);
         halfAxisX = getWidth() / 2;
         halfAxisY = getHeight() / 2;
-
-        Date date = new Date();
+        
+        //draw clock and hands
         drawClock(g2, CONTOUR);
+        Date date = new Date();  
         drawHand(g2, HOUR_HAND, 12, (date.getHours()*5)+calculatePartOfHour(date));
         drawHand(g2, MINUTES_HAND, 4, date.getMinutes());
         drawHand(g2, SECOND_HAND, 1, date.getSeconds());
     }
     
-    /*
-        5 ... 60
-        x ... minute
-        --------------------
-        x:5=MINUTE:100
-        x=(5*minute)/100
-    */
+    /**
+     * Hour is part of 5 degree, method calculate how many degree is
+     * now from minutes.
+     * @param date actually date
+     * @return part of hour
+     */
     private int calculatePartOfHour(Date date){
        return (int) ((double)(5*date.getMinutes())/60);
     }
-
+    
     private void drawClock(Graphics2D g2, Color color) {
         g2.setColor(color);
         g2.setStroke(new BasicStroke(2));
