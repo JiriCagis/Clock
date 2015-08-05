@@ -1,11 +1,11 @@
-<h1> Hodiny 1.0</h1>
-Aplikace zobrazuje analogove rucickove hodiny.
+<h1> Clock 1.0</H1>
+Goal this application is show analog hands clock.
 
-Hlavni funkce
-- Hodiny se dynamicky roztahuji v zavislo na velikosti okna
-- Aplikace si pamatuje velikost a umisteni okna i po zavreni hodin.
+<H2>Main function</H2>
+- Clock is dynamic change own size depend on resize window.
+- Application remember size and location window after close.
 
-Technologie
-- Programovaci jazyk; Java 7
-- Graficke rozhrani: Swing, kresleni na platno
-- Ulozeni stavu okna: XML format
+<H2>Technologie</H2>
+- Programming language; Java 7
+- Graphical interface: Swing, draw on Canvas
+- Persist data: XML format
