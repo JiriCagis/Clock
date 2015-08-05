@@ -7,14 +7,32 @@
      <string>width</string>
      <void method="set">
       <object idref="Dimension0"/>
-      <int>571</int>
+      <int>554</int>
      </void>
     </void>
     <void class="java.awt.Dimension" method="getField">
      <string>height</string>
      <void method="set">
       <object idref="Dimension0"/>
-      <int>480</int>
+      <int>225</int>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="java.awt.Dimension" id="Dimension1">
+    <void class="java.awt.Dimension" method="getField">
+     <string>width</string>
+     <void method="set">
+      <object idref="Dimension1"/>
+      <int>635</int>
+     </void>
+    </void>
+    <void class="java.awt.Dimension" method="getField">
+     <string>height</string>
+     <void method="set">
+      <object idref="Dimension1"/>
+      <int>506</int>
      </void>
     </void>
    </object>

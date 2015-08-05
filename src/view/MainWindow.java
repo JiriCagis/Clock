@@ -23,11 +23,15 @@ public class MainWindow extends JFrame {
         setResizable(true);
         xmlParser = new XmlParserImpl<Dimension>();
         List<Dimension> list = xmlParser.parse(xmlFile);
-        if(!list.isEmpty())
+        if(!list.isEmpty() && list.size()>1){
             setSize(list.get(0));
-        else
+            Dimension location = list.get(1);
+            setLocation(location.width, location.height);
+        } else
+        {
             setSize(300, 300);
-        
+            setLocationRelativeTo(null);
+        }
         //add components to window
         Clock clock = new Clock();
         getContentPane().add(clock);
@@ -38,7 +42,10 @@ public class MainWindow extends JFrame {
             public void windowClosing(WindowEvent e) {
                 //persist data
                 List<Dimension> list = new ArrayList<Dimension>();
-                list.add(getSize());
+                Dimension windowSize = getSize();
+                Dimension positionOnScreen = new Dimension( getLocationOnScreen().x,getLocation(null).y);
+                list.add(windowSize);
+                list.add(positionOnScreen);
                 xmlParser.save(list, xmlFile);
                 //exit window
                 dispose();
