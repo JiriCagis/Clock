@@ -1,9 +1,11 @@
 <h1> Clock 1.0</H1>
-Goal this application is show analog hands clock.
+Goal this application is shown classical hands a clock.
 
-<H3>Main function</H3>
-- Clock is dynamic change own size depend on resize window.
-- Application remember size and location window after close.
+<H3>Main functions</H3>
+<ul>
+	<li>Clock support stretchable depen on resize a window</li>
+	<li>Application remember your position and size a window</li>
+</ul>
 
 <H3>Technologie</H3>
 - Programming language; Java 7
