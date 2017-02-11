@@ -3,7 +3,7 @@ Goal this application is shown classical hands a clock.
 
 <H3>Main functions</H3>
 <ul>
-	<li>Clock support stretchable depen on resize a window</li>
+	<li>Clock support stretchable depend on resize a window</li>
 	<li>Application remember your position and size a window</li>
 </ul>
 
